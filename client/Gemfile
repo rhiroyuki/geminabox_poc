@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+if ENV['INSIDE_DOCKER_CONTAINER'] == 'true'
+  puts "Fetching from GEMBOX"
+  source "http://gembox:9292"
+else
+  puts "Fetching from LOCALHOST"
+  source "http://localhost:9292"
+end
+
+gem "puma"
+gem "my_gem"

@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  gembox:
+    build: ./gembox/
+    ports:
+      - 9292:9292
+    volumes:
+      - ./gembox:/usr/src/app
