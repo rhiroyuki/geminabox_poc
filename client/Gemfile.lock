@@ -1,7 +1,11 @@
 GEM
-  remote: http://localhost:9292/
+  remote: http://username:password@localhost:9292/
   specs:
     my_gem (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
     nio4r (2.5.8)
     puma (5.6.4)
       nio4r (~> 2.0)
@@ -10,7 +14,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  my_gem
+  my_gem!
   puma
 
 BUNDLED WITH

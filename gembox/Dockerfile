@@ -1,10 +1,11 @@
 FROM ruby:3.1.2
 
 RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
-RUN bundle install
+RUN MAKE="--jobs=$(nproc)" bundle install --jobs=$(nproc)
 
 EXPOSE 9292
 

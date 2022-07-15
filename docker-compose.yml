@@ -6,3 +6,6 @@ services:
       - 9292:9292
     volumes:
       - ./gembox:/usr/src/app
+    environment:
+      - RACK_AUTH_USERNAME=username
+      - RACK_AUTH_PASSWORD=password

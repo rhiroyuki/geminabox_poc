@@ -1,3 +1,23 @@
 #! /usr/bin/env bash
 
-docker-compose up gembox
+set -eu pipefail
+
+echo "Starting Gembox"
+docker-compose up -d gembox
+
+echo "Building my_gem"
+cd mygem && \
+  gem build my_gem && \
+  gem install geminabox
+
+while [[ $(curl -s -o /dev/null -I -w "%{http_code}" http://localhost:9292/healthcheck) != "200" ]] ; do
+  echo "Waiting for gembox to wake up..."
+  sleep 0.2
+done
+
+echo "Pushing gem to Gembox"
+gem inabox -o my_gem-0.1.0.gem --host http://username:password@localhost:9292
+
+echo "Running bundle on client"
+cd ../client  && \
+  GEMBOX_USERNAME=username GEMBOX_PASSWORD=password bundle install
